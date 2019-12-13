@@ -1,14 +1,11 @@
 /* Flash Message */
 .alert {
   color: white;
+  width: 100%;
   border-radius: 10px;
-  position: absolute;
-  top: 50px;
-  right: 10px;
-  padding: 20px;
+  padding: 15px;
   display: flex;
   align-items: center;
-  z-index: 1111;
 }
 .alert p {
   margin: 0;
@@ -17,10 +14,25 @@
   background: lightcoral;
 }
 .alert-success {
-  background: lightgreen;
+  background: #1e7bff;
 }
 .close {
   color: white;
   cursor: pointer;
   margin-right: 10px;
+  font-size: 15px;
+}
+/* Drag And Drop*/
+.drag-drop-container {
+  border: 1px solid black;
+  background: #e4edf5fe;
+  color: #1b1c1d;
+}
+.drag-drop-input {
+  color:  #1e7bff;
+  font-size: 36;
+}
+.content-dd {
+  width: 300px;
+  height: 30px;
 }
