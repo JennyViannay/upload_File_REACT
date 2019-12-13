@@ -1,11 +1,14 @@
 import React from "react";
 import axios from "axios";
-import FlashMessage from 'react-flash-message';
+import FlashMessage from "react-flash-message";
 
 class UploadFile extends React.Component {
     state = {
         files: '',
-        message: ''
+        message: {
+            type : '',
+            text : ''
+        }
     };
 
     onChangeHandler = e => {
@@ -21,28 +24,33 @@ class UploadFile extends React.Component {
         }
         axios
             .post("http://localhost:5000/upload/file", data)
-            .then(response => {
-                console.log(response.data.success)
-                const message = response.data.success
-                this.setState({ message: message}, () => this.state)
+            .then(res => {
+                console.log('ok')
+                this.setState({ message: {
+                    type: 'success',
+                    text: 'Files uploaded with success'
+                }}, () => this.state)
             })
             .catch(error => {
-                console.log(error)
-                this.setState({ message: 'Error upload file, try again' })
+                console.log('error')
+                this.setState({ message: {
+                    type: 'error',
+                    text: 'Error, try again'
+                }}, () => this.state)
             });
     };
 
     render() {
         return (
-            <>
+            <div>
                 <div className="row">
                     <div className="col-12 text-center my-3">
-                        <h1 className="">UploadFile</h1>
+                        <h1 className="">Upload your Files here</h1>
                     </div>
                     <div className="col-12 text-center my-3">
-                    <FlashMessage duration={10000} persistOnHover={true}>
-                        <p>{this.state.message}</p>
-                    </FlashMessage>
+                        <FlashMessage duration={20000} persistOnHover={true}>
+                            <p>{this.state.message.type === 'success' ? `${this.state.message.text}` : `${this.state.message.text}`}</p>
+                        </FlashMessage>
                     </div>
                 </div>
                 <form method="POST" encType="multipart/form-data" action="uploadfile">
@@ -68,7 +76,7 @@ class UploadFile extends React.Component {
                         </div>
                     </div>
                 </form>
-            </>
+            </div>
         );
     }
 }
