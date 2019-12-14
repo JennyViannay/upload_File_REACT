@@ -100,7 +100,7 @@ class UploadFile extends React.Component {
                             {this.state.files && this.state.files.map((file,i) =>  <li key={i}>{file.name}</li>)}
                         </ul>
                     </div>
-                </div>
+                </div> 
             </>
         )
     }
