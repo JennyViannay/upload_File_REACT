@@ -13,7 +13,13 @@ class UploadFile extends React.Component {
     }
 
     onChangeHandler = e => {
-        this.setState({ files: e.target.files })
+        let fileList = this.state.files;
+        for (var i = 0; i < e.target.files.length; i++) {
+            if (!e.target.files[i]) return
+          fileList.push(e.target.files[i])
+          }
+        
+        this.setState({files: fileList}, () => console.log(this.state))
     }
 
     onClickHandler = e => {
@@ -54,7 +60,7 @@ class UploadFile extends React.Component {
           if (!files[i]) return
           fileList.push(files[i])
         }
-        this.setState({files: fileList})
+        this.setState({files: fileList}, () => console.log(this.state))
     }
 
     render() {
